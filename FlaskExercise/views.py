@@ -1,22 +1,20 @@
-from flask import flash, render_template, redirect, request
+from flask import render_template, request
 from FlaskExercise import app
 
 
 @app.route('/')
 def home():
-    log = request.values.get('log_button')
+    log = request.values.get("log_button")
 
-    if log == "info":
-        app.logger.info("Info button pressed")
-
-    elif log == "warning":
-        app.logger.warning("Warning button pressed")
-
-    elif log == "error":
-        app.logger.error("Error button pressed")
-
-    elif log == "critical":
-        app.logger.critical("Critical button pressed")
+    if log:
+        if log == "info":
+            app.logger.info("No issue.")
+        elif log == "warning":
+            app.logger.warning("Warning occurred.")
+        elif log == "error":
+            app.logger.error("Error occurred.")
+        elif log == "critical":
+            app.logger.critical("Critical error occurred.")
 
     return render_template(
         "index.html",
